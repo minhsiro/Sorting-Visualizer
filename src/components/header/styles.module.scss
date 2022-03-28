@@ -1,0 +1,44 @@
+.header {
+  background-color: lightpink;
+}
+
+.header form {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: lightblue;
+  width: calc(min(80%, 900px));
+  height: 100%;
+  margin: auto;
+  padding: 0.5em;
+}
+.header button {
+  height: 3em;
+  width: 7em;
+  border: none;
+  outline: none;
+  margin: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+  &:hover {
+    background-color: lightgrey;
+  }
+}
+
+.header label,
+input {
+  margin: 0 0.5em 0 0;
+}
+.header select {
+  height: 2em;
+  border-radius: 0.75em;
+}
+.header div {
+  margin: 0 1.5em;
+}
+
+.header input[type="range"] {
+  transform: translateY(0.2em);
+}

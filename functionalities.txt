@@ -1,0 +1,19 @@
+* header
+1. the user is able to choose between several sorting algorithms to perform
+2. Allows the user to change array length
+3. Allows the user to reset/shuffle the array
+
+* array
+4. performing sorting algorithms
+    - each operation has a 100~200ms delay so that it is visible.
+    - the currently selected item color is red
+    - after the sorting is completed, change all items' color to green starting from
+        index 0 to 100 (delay 50~100ms)
+5. how many iterations
+6. runtime
+7. speed
+
+logic:
+* shuffle array
+https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
