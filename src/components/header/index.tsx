@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import SortingAlgos from "../../const/sorting";
 import {
@@ -61,7 +60,7 @@ const Header = () => {
               id="vol"
               name="vol"
               min="10"
-              max="500"
+              max="1000"
               value={arrSize}
               onChange={arrSizeChangeHandler}
               disabled={isSorting}

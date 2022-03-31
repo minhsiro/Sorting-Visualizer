@@ -4,6 +4,8 @@ import delay from "../utils/time";
 
 type callback = (x: number[]) => void;
 
+export let quickSortHelper: number[] = [];
+
 export default function startSorting(
   fn: callback,
   arr: number[],
@@ -32,7 +34,12 @@ export default function startSorting(
       return;
     }
     case SortingAlgos.quick: {
-      quickSort(fn, arr, iteration);
+      const condition = {
+        hasSorted: false,
+      };
+      quickSort(arr, 0, arr.length - 1, condition);
+      fn(arr);
+      delay(iteration);
       return;
     }
   }
@@ -103,6 +110,14 @@ function selectionSort(fn: callback, arr: number[], iteration: number) {
 }
 
 // divide & conquer algorithm
+/**
+ * Ideas
+ * - split the array in half,
+ * and then split those 2 small arrays in half
+ * keep doing it recursively until those arrays can't be splitted anymore
+ * this will be LogN
+ * - merge those small arrays then return the sorted array
+ */
 function mergeSort(arr: number[], condition: { hasSorted: boolean }): number[] {
   if (arr.length < 2) {
     return arr;
@@ -147,4 +162,52 @@ function merge(
   return arr as number[];
 }
 
-function quickSort(fn: callback, arr: number[], iteration: number) {}
+/**
+ * ideas:
+ * - select a pivot (axis) element. There are different variations of quick sort
+ * where the pivot element is selected from different positions.
+ */
+function quickSort(
+  arr: number[],
+  low: number,
+  high: number,
+  condition: { hasSorted: boolean }
+) {
+  if (low < high) {
+    let pi = partition(arr, low, high, condition);
+    if (condition.hasSorted === false) {
+      quickSort(arr, low, pi - 1, condition);
+      quickSort(arr, pi + 1, high, condition);
+    }
+  }
+}
+
+function partition(
+  arr: number[],
+  low: number,
+  high: number,
+  condition: {
+    hasSorted: boolean;
+  }
+) {
+  let pivot = arr[high];
+  let i = low - 1;
+  for (let j = low; j < high; j++) {
+    if (arr[j] <= pivot) {
+      i += 1;
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+  }
+
+  let temp = arr[i + 1];
+  arr[i + 1] = arr[high];
+  arr[high] = temp;
+  if (quickSortHelper.includes(i + 1)) {
+  } else {
+    condition.hasSorted = true;
+    quickSortHelper.push(i + 1);
+  }
+  return i + 1;
+}

@@ -4,7 +4,7 @@ import SortingAlgos from "../const/sorting";
 export const arrayConfigSlice = createSlice({
   name: "arrayConfig",
   initialState: {
-    iteration: 50,
+    iteration: 20,
     size: 500,
     mode: SortingAlgos.bubble,
   },

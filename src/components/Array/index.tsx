@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux-store";
 import startSorting from "../../sorting-logic/logic";
 import { toggleIsSorting } from "../../redux-store/sortingSlice";
+import { quickSortHelper } from "../../sorting-logic/logic";
 
 const createRandomArray = (size: number) => {
   let multiplier: number;
@@ -16,7 +17,7 @@ const createRandomArray = (size: number) => {
   } else if (size < 400) {
     multiplier = 2;
   } else {
-    multiplier = 1.5;
+    multiplier = 0.75;
   }
   const newArr = Array(size);
   for (let i = 0; i < size; i++) {
@@ -44,13 +45,16 @@ const SortingVisualizer = () => {
     const sortedArr = [...arr].sort((a, b) => a - b);
     if (isSorting) {
       if (JSON.stringify(arr) === JSON.stringify(sortedArr)) {
+        if (!!quickSortHelper.length) {
+          quickSortHelper.splice(0, arr.length);
+        }
         dispatch(toggleIsSorting());
         return;
       }
       const newArr = [...arr];
       startSorting(setArr, newArr, mode);
     }
-  }, [isSorting, arr]);
+  }, [isSorting, arr, dispatch, mode]);
 
   return (
     <div className={styles.container}>

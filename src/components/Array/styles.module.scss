@@ -2,13 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  width: calc(min(90%, 1500px));
+  width: calc(min(90%, 1800px));
   height: 80%;
-  margin: 3em auto 0 auto;
+  margin: 4em auto 0 auto;
+  background-color: black;
 }
 
 .sortItem {
-  border: 1px solid black;
-  flex: 1;
-  background-color: rgb(114, 255, 114);
+  width: 1.8px;
+  background-color: white;
 }
